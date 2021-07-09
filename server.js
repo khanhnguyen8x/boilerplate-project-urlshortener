@@ -33,7 +33,7 @@ app.post("/api/shorturl", function (req, res) {
   var original_url = req.body.url;
   //console.log(original_url);
   if (!is_url(original_url)) {
-    return res.status(400).send({error: 'invalid url'});
+    return res.status(200).send({error: 'invalid url'});
   }
 
   var short_url = Math.floor(Math.random() * 1000);
@@ -49,7 +49,7 @@ app.get("/api/shorturl/:url?", function (req, res) {
   if (!isNaN(short_url)) {
     key = parseInt(short_url);
   } else {
-    return res.status(400).send({error: 'invalid url'});
+    return res.status(200).send({error: 'invalid url'});
   }
   var original_url = map.get(key);
   console.log(map);
@@ -58,7 +58,7 @@ app.get("/api/shorturl/:url?", function (req, res) {
   if (original_url) {
     return res.redirect(original_url);
   } else {
-    return res.status(400).send({error: 'invalid url'});
+    return res.status(200).send({error: 'invalid url'});)
   }
 });
 
